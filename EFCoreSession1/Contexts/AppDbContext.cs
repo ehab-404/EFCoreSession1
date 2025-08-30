@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EFCoreSession1.Configurations;
 using EFCoreSession1.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFCoreSession1.Contexts
 {
@@ -24,9 +25,9 @@ namespace EFCoreSession1.Contexts
 
 
 
-        public override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
+        protected  override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             //start using connection string
-            optionsBuilder.UseSqlServer("Server=.; DataBase=AppG03; Trusted_Connection=True;"); }
+            optionsBuilder.UseSqlServer("Server=.; DataBase=AppG03; Trusted_Connection=True; TrustServerCertificate=True;"); }
 
 
 
@@ -38,7 +39,7 @@ namespace EFCoreSession1.Contexts
 
 
 
-        public override void OnModelCreating(ModelBuilder modelbuilder)
+        protected   override void OnModelCreating(ModelBuilder modelbuilder)
         {
             //modelbuilder.Entity<Employee>().ToView();
             //modelbuilder.Entity<Employee>().HasKey(e => e.Id);
